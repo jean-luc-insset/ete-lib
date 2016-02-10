@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+    Document   : entity2java.xml
+    Created on : 1 octobre 2010, 18:18
+    Versions   : 1.1 - importations de java.util.Date et java.util.List
+    Author     : jldeleage
+    Description:
+        Modèle de page à générer pour chaque entité du modèle.
+        La page affiche un formulaire de saisie des différentes propriétés
+        définies dans l'entité.
+-->
+
+<ete:root
+        xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xhtml"
+        encoding="UTF-8"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:cc="http://java.sun.com/jsf/composite"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        href="generated-resources/ete/webapp/resources/ete/listeToutesLesEntites.xhtml"
+        >
+    <ete:import href="booleanfield.xml"/>
+    <ete:import href="association2selectOne.xml"/>
+    <ete:import href="association2selectMany.xml"/>
+    <ete:import href="associationQualifiee.xml"/>
+    <ete:import href="defaultfield.xml"/>
+    <ete:import href="dateField.xml"/>
+    <ete:import href="entity2jsffields.xml"/>
+
+<html>
+    <cc:interface>
+        <cc:attribute name="selected"/>
+    </cc:interface>
+    <cc:implementation>
+        <table class="table table-striped">
+            <tbody>
+        <ete:forEach select="Entity">
+            <tr>
+                <td>
+                <h:link outcome="/admin/€[name]/List" value="€[ete:decamelisation(name)]"/>
+                </td>
+            </tr>
+        </ete:forEach>
+            </tbody>
+        </table>
+    </cc:implementation>
+</html>
+</ete:root>
+
+

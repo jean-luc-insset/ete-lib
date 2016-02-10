@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        href="generated-resources/ete/webapp/resources/js/app.js"
+        >
+
+var app = angular.module('app', ['ngRoute', 'ngResource']);
+
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider<ete:forEach select="Entity">
+            .when("/€[name]", {
+                templateUrl : 'vues/€[name]/vue.html',
+                controller : '€[name]Controleur'
+            })      // typeScalaire</ete:forEach>
+}   // function($routeProvider)
+]);        // app.config
+
+
+</ete:root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Parcourt les propriétés et les associations de l'entité contextuelle.
+Pour chacune, construit le champ de saisie dans un formulaire de création
+de l'entité.
+Ensuite, invoque le même template pour l'éventuelle super-classe
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        mode="uneAssocToString"
+        items="association"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    buffer = "";
+    assoc = valeur.€[name];
+    // Il faut effectuer un appel récursif sur les propriétés aussi
+    <ete:apply select="//Entity[name = current()/type/name]" mode="addPropertiesToBuffer"/>
+    valeur.€[name]AsString = buffer;
+</root>
+

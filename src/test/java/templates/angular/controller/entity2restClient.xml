@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        items="Entity"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        href="generated-resources/ete/webapp/vues/€[name]/restClient.js"
+        >
+
+<ete:import href="addPropertiesToBuffer.xml"/>
+
+// 1 Récupération de l'application
+var app = angular.module("app");
+
+
+
+// 2 Client REST sous forme d'une factory
+app.factory('€[name]Factory', function ($resource, $http) {
+    var factory = $resource('webapi/€[name]/:id:from/:to', {}, {
+        query: {
+            method: 'GET',
+            params: {},
+            isArray: true
+        }
+    });
+    var old = factory.query;
+    factory.query = function(a,b,c,d) {
+        var resultat = old.call(factory, a,b,c,d);
+        resultat.$promise.then(function(data) {
+            for (var i=0 ; i&lt;data.length ; i++) {
+                var entity = data[i];
+                entity.asString = function() {
+                    var buffer = "";
+                    <ete:apply select="." mode="addPropertiesToBuffer"/>
+                    return buffer;
+                }
+            }
+            return data;
+        });
+        return resultat;
+    };
+    factory.count = function() {
+        var resultat = { };
+        $http.get("webapi/€[name]/count")
+                .success(
+                    function(response) {
+                        resultat.valeur = response;
+                    });
+        return resultat;
+    }
+    return factory;
+});     // app.factory
+
+
+
+
+</ete:root>

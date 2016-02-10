@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Parcourt les propriétés et les associations de l'entité contextuelle.
+Pour chacune, construit le champ de saisie dans un formulaire de création
+de l'entité.
+Ensuite, invoque le même template pour l'éventuelle super-classe
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+      method="html"
+      mode="field"
+      items="association">
+      Select : 
+  <select class="form-control" id="€[name]" ng-model="selected.€[name]">
+      <option ng-repeat="valeur in all€[ete:initMaj(name)]" value="{{ valeur }}">{{ valeur.asString() }}</option>
+  </select>
+
+</root>
+

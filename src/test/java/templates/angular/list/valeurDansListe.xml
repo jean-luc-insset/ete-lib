@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construit un menun "select".
+Importée par les pages de création et d'édition d'entités.
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xhtml"
+        mode="liste"
+        xmlns="http://www.w3.org/1999/xhtml"
+        items="property" >
+    {{ valeur.€[name] }}
+</root>

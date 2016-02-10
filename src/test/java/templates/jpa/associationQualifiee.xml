@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construit un menun "select".
+Importée par les pages de création et d'édition d'entités.
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xml"
+        mode="assoc"
+        items="association[qualifier]"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!-- @€[both-cardinalities]<if test="local-name() = 'composition'">(cascade = CascadeType.ALL, fetch = FetchType.EAGER )</if>-->
+    @MapKeyJoinColumn(name="€[qualifier/key]")
+    public <choose>
+        <!-- TODO : on peut avoir une association qualifiée avec une cardinalité supérieure à 1 -->
+        <when test="qualifier">Map&lt;€[qualifier/type/name], €[type/name]&gt;</when>
+        <when test="cardinality='*'">List&lt;€[ type/name ]&gt;</when>
+        <otherwise>€[ type/name ]</otherwise>
+    </choose> get€[ ete:initMaj(name) ]() {
+        return €[name];
+    }
+
+    public void set€[ ete:initMaj(name) ](Map&lt;€[qualifier/type/name], €[type/name]&gt; €[name]) {
+        this.€[name] = €[name];
+    }<if test="cardinality='*'"><!-- association "n" -->
+
+    public void add€[ ete:initMaj(name) ](€[ type/name ] €[name]) {
+        this.€[name].put(€[name].get€[ete:initMaj(qualifier/type/name)](), €[name]);
+    }
+
+    public void remove€[ ete:initMaj(name) ](€[ type/name ] €[name]) {
+        this.€[name].remove(€[name].get€[ete:initMaj(qualifier/type/name)]());
+    }
+    </if>
+    <if test="cardinality='1'">public void set€[ ete:initMaj(name) ](€[ete:initMaj(qualifier/type/name)] inKey, €[ete:initMaj(type/name)] inValue) {
+            this.€[name].put(inKey, inValue);
+    }</if>
+
+</root>

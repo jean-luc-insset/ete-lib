@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!--
+    Document   : entity2java.xml
+    Created on : 1 octobre 2010, 18:18
+    Versions   : 1.1 - importations de java.util.Date et java.util.List
+    Author     : jldeleage
+    Description:
+        Modèle de classe à générer pour chaque entité du modèle
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        items="Enumeration"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        href="generated-sources/ete/€[ translate(package, '.', '/')]/€[ name ].java"
+        >
+<!--<ete:import href="operation.xml"/>-->
+// Code généré automatiquement par le template entity2mauvais.xml
+package €[ package ];
+
+<for each="association[ type/name != 'Object' ] | composition">import  €[ type/package ].€[ type/name ];
+</for>
+<for each="operation">
+    <if test="type/package">import €[type/package].€[type.name];</if>
+    <for each="param"><if test="type/package">import €[type/package].€[type/name];</if>
+    </for>
+</for>
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;<if test="hasSubclasses">
+import javax.persistence.Inheritance;                      
+</if>import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.Version;
+
+
+@Generated("Ete - auteur : Jean-Luc Deleage jean-luc@insset.fr")
+public enum €[ name ] {
+
+<forEach items="value" sep=", ">
+    €[ . ]
+</forEach>
+
+}  // €[ name ]
+
+</root>

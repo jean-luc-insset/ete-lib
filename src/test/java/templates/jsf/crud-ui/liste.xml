@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Parcourt les propriétés et les associations de l'entité contextuelle.
+Pour chacune, construit le champ de saisie dans un formulaire de création
+de l'entité.
+Ensuite, invoque le même template pour l'éventuelle super-classe
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xml"
+        mode="heritageListe"
+        items="Entity"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ete:apply mode="heritageListe"
+            select="//Entity[name = current()/superclass/name]"/>
+    <ete:forEach items="property | association">
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="#{bundle.List€[../name]Title_€[ name ]}"/>
+        </f:facet>
+        <ete:apply-templates select="." mode="liste"/>
+    </h:column>
+    </ete:forEach>
+</root>
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Cette feuille génère une "vue" angular contenant un formulaire pour créer une
+nouvelle instance du type traité et la liste des entités de ce type.
+Les classes CSS utilisées sont des classes "Bootstrap".
+-->
+
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="html"
+        items="Entity"
+        href="generated-resources/ete/webapp/vues/€[name]/vue.html"
+        >
+
+    <!-- Dans cette version, la liste commence par un formulaire de création
+         d'une nouvelle instance
+      -->
+    <ete:import href="../form/champsForm.xml"/>
+    <ete:import href="../form/associationNonQualifieeForm.xml"/>
+    <ete:import href="../form/simpleValeurForm.xml"/>
+    <ete:import href="../form/entity2form.xml"/>
+
+    <ete:import href="liste.xml"/>
+    <ete:import href="titreListe.xml"/>
+    <ete:import href="associationDansListe.xml"/>
+    <ete:import href="associationQualifieeDansListe.xml"/>
+    <ete:import href="valeurDansListe.xml"/>
+
+    <ete:param name="essai" select="'Valeur par défaut'"/>
+
+
+    <!-- Insertion du formulaire de création -->
+    <ete:apply select="." mode="form"/>
+
+    <hr/>
+    [€[ $essai ]]
+    <hr/>
+
+    {{ count.valeur }}
+    <!-- Table affichant les entités créées -->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+              <ete:apply select="." mode="heritageTitreListe"/>
+              <th>Id</th>
+              <th>-</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="valeur in valeurs">
+                <ete:apply select="." mode="heritageListe"/>
+                <td>
+                    {{ valeur.id }}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="details()">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="edit(valeur)">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                            ng-click="delete(valeur)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div data-pagination="" data-num-pages="numPages()" 
+          data-current-page="numPage" data-max-size="maxSize"  
+          data-boundary-links="true">
+    </div>
+
+    <script>
+
+    </script>
+
+
+</ete:root>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construit le contenu d'un formulaire JSF standard : pour chaque
+propriété, ajoute les champs ad-hoc.
+Importée par les pages de création et d'édition d'entités.
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xml"
+        mode="formulaire"
+        items="Entity"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ete:import href="booleanfield.xml"/>
+    <ete:import href="association2selectOne.xml"/>
+    <ete:import href="association2selectMany.xml"/>
+    <ete:import href="defaultfield.xml"/>
+    <ete:import href="dateField.xml"/>
+
+    <ete:apply mode="formulaire"
+               select="//Entity[name = current()/superclass/name]"/>
+
+    <fieldset>
+    <legend>€[ ete:decamelisation(name) ]</legend>
+<h:panelGrid columns="2">
+    <ete:apply select="property | association" mode="field"/>
+</h:panelGrid>
+    </fieldset>
+
+
+</root>

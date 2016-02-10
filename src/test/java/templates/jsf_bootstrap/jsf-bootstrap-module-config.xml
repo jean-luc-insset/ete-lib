@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<transformation-set>
+
+    <pas>
+        <!-- Entites et DAOs, unité de persistence -->
+        <module   nom="templates/jpa/jpa-module-config.xml"/>
+
+        <!-- Bundle des principaux titres, contrôleurs, JsfUtil,
+             PaginationHelper -->
+        <module  nom="templates/jsf/basic/basic-jsf-module-config.xml"/>
+
+        <!-- Pages JSF de CRUD -->
+        <!-- Chaînes des titres, version par défaut, faces-config, navigation -->
+        <module nom="templates/jsf/ui-classique/ui-classique-module-config.xml"/>
+        <!-- Pages de création, listing, modification -->
+        <module nom="templates/jsf_bootstrap/crud-ui/crud-ui-module-config.xml"/>
+
+        <!-- Liste des entités, apparaissant à gauche -->
+        <template template="templates/jsf_bootstrap/crud-ui/model2entityList.xml"/>
+        <template template="templates/jsf_bootstrap/ui-classique/model2index.xml"/>
+    </pas>
+
+</transformation-set>

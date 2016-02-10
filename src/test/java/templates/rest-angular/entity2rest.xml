@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text" items="Entity[not(abstract)]"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        href="generated-sources/ete/ete/rest/€[ name ]Controller.java"
+        >
+<!--<ete:import href="associationQualifiee4Controller.xml"/>-->
+package ete.rest;
+
+<for each="association[ type/name != 'Object' ]"><if test="type/name != 'String'">import  €[ type/package ].€[ type/name ];
+</if></for>
+
+import €[package].€[name];
+import fr.insset.ete.jsf.util.JsfUtil;
+import fr.insset.ete.jsf.util.PaginationHelper;
+import €[package].jpa.€[name]DAO;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import javax.ejb.LocalBean;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
+
+@LocalBean
+@Path("/€[ ete:initMin(name) ]")
+public class €[name]Controller implements Serializable {
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayPlainTextHello() {
+        return "Hello Jersey from €[ name ]";
+    }
+
+}
+    
+</root>

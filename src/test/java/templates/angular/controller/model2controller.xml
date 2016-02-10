@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        href="generated-resources/ete/webapp/resources/js/ctrl.js"
+        >
+
+    <ete:import href="addAssocToString.xml"/>
+    <ete:immort href="uneAssocToString.xml"/>
+    <ete:import href="addPropertiesToBuffer.xml"/>
+    
+var app = angular.module('ete', ['ngRoute']);
+var controleur = app.controller('ctrl', function() {
+});     // app.controller
+
+
+
+
+
+app.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider <ete:forEach select="Entity">
+            .when('/€[name]', {
+                templateUrl: 'templates/€[ete:initMin(name)].html',
+                controller: '€[name]Controller'
+            })</ete:forEach>
+    }
+]);
+
+angular.element(document).ready(function() {
+    angular.bootstrap(document, ['ete']);
+});
+
+
+</ete:root>

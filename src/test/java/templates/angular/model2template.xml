@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="html"
+        href="generated-resources/ete/webapp/index.html"
+        >
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Ete</title>
+        <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+        <script src="resources/angular-1.3.15/angular.js"> </script>
+        <script src="resources/bootstrap/jquery.min.js"> </script>
+        <script src="resources/bootstrap/js/bootstrap.min.js"> </script>
+    </head>
+
+    <body ng-app="app">
+        <div class="container-fluid" 
+             id="main">
+
+            <div id="top" class="row top">
+                <div class="col-sm-12">
+                Ete
+                </div>
+                <div>{{ classeAffichee }}</div>
+            </div>
+
+            <div class="row">
+                <!-- Affiche la liste des différentes entités -->
+                <div class="col-sm-2">
+        <ul class="nav nav-pills nav-stacked">
+        <ete:forEach select="Entity">
+            <li>
+                <a data-toggle="pills" href="#€[name]">€[ete:decamelisation(name)]</a>
+            </li>
+        </ete:forEach>
+        </ul>
+        </div>
+        <div class="col-sm-10">
+            <div class="ng-view">
+            </div>
+        </div>
+        </div>
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+            </div>
+        </div>
+        <script src="resources/angular-1.3.15/angular-resource.js"> </script>
+        <script src="resources/angular-1.3.15/angular-route.js"></script>        
+        <script src="resources/js/app.js"></script>
+        <ete:forEach select="Entity"><script src="vues/€[name]/restClient.js"></script>
+        </ete:forEach>
+        <ete:forEach select="Entity"><script src="vues/€[name]/controleur.js"></script>
+        </ete:forEach>
+    </body>
+
+</html>
+
+
+</ete:root>

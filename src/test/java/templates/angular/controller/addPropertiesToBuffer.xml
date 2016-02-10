@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Lorsqu'on a une entité a référençant d'autres entités dans des
+    relations, il peut être utile d'avoir une version sous forme d'une
+    chaîne de caractères.
+    Par exemple si on a :
+    a.b = { nom: "Lagaffe", prenom: "Gaston", id:"12", employeur: { } }
+    on voudrait avoir :
+    a.bAsString = "Lagaffe Gaston".
+    Dans cet exemple, cette feuille est appelée pour la classe de b et
+    chacune des super-classes.
+    Pour fonctionner, cette feuille nécessite qu'une feuille appelante
+    ait défini :
+        - une variable "buffer" dans laquelle on cumule
+        - et une variable "valeur".
+    
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        mode="addPropertiesToBuffer"
+        items="Entity"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ete:apply mode="addPropertiesToBuffer"
+            select="//Entity[name = current()/superclass/name]"
+/><ete:forEach select="property"
+            >               // Ajout de la propriete €[name] dans la rep graphique
+                buffer += entity.€[name];
+                buffer += " ";
+    </ete:forEach>
+</root>
+

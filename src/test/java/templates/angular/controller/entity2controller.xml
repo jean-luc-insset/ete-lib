@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        items="Entity"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        href="generated-resources/ete/webapp/vues/€[name]/controleur.js"
+        >
+
+<ete:import href="addAssocToString.xml"/>
+<ete:import href="uneAssocToString.xml"/>
+<ete:import href="addPropertiesToBuffer.xml"/>
+
+
+// 1 Récupération de l'application
+var app = angular.module("app");
+
+
+// 2- Création du contrôleur de la (sous-)vue.
+//    Ce contrôleur, selon les besoins, charge des données, envoie une
+//    demande d'ajout, de modification ou de suppression de données. En fait,
+//    il installe dans le "scope" des méthodes qui réalisent ces tâches.
+app.controller("€[name]Controleur",
+            ['$scope', '€[name]Factory', <ete:forEach select="association"> '€[type/name]Factory',</ete:forEach>
+            function($scope, factory<ete:forEach select="association">, €[type/name]Factory</ete:forEach>){
+
+        $scope.nbParPage = 6;
+        $scope.nbValeurs = 0;
+        $scope.numPage = 1;
+        $scope.nbPages = function() {
+            $scope.nbValeurs / $scope.nbParPage + 1;
+        }
+
+        $scope.query = function() {
+            factory.query(
+                {
+                    from : ($scope.numPage-1)*$scope.nbParPage,
+                    to : $scope.numPage*$scope.nbParPage - 1
+                },      // paramètres de la requete
+                function (inValeurs) {
+                    $scope.valeurs = inValeurs;
+                }
+            );
+        };
+
+
+        // Chargement des données affichées initialement par la liste
+        $scope.query();
+
+        // Ajout des méthodes de CUD
+        // La variable $scope.selected désigne l'objet édité par le formulaire
+        $scope.selected = new factory();
+        $scope.create = function() {
+            var json = JSON.stringify($scope.selected);
+            console.log("Données envoyées : " + json);
+            factory.save($scope.selected, function() {
+                $scope.query();
+            });     // callback de factory.save();
+            $scope.selected = new factory();
+        }       // $scope.create
+        $scope.delete=function(valeur) {
+            factory.delete(valeur, function() {
+                $scope.query();
+            });
+        };      // delete
+        $scope.edit=function(valeur) {
+        }
+
+<ete:forEach select="association">        $scope.all€[ete:initMaj(name)] = €[type/name]Factory.query();
+</ete:forEach>
+
+    $scope.count = factory.count();
+    $scope.nbPagesMax = ($scope.count + $scope.nbParPage - 1) / $scope.nbParPage;
+}])
+
+
+
+
+</ete:root>

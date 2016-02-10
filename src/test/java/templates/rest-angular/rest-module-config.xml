@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<transformation-set>
+    <pas>
+        <!-- Entites et DAOs, unité de persistence -->
+        <module   nom="templates/jpa/jpa-module-config.xml"/>
+
+        <!-- Bundle des principaux titres, contrôleurs, JsfUtil,
+             PaginationHelper. Attention, ce module crée un descripteur
+             web.xml. Il convient d'en créer un nouveau.
+        -->
+        <module  nom="templates/jsf/basic/basic-jsf-module-config.xml"/>
+
+        <!-- Services REST -->
+        <template template="templates/rest/entity2rest.xml"/>
+        <template template="templates/rest/model2web.xml"/>
+
+    </pas>
+</transformation-set>

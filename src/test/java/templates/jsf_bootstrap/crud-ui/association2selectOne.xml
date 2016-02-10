@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construit un menun "select".
+Importée par les pages de création et d'édition d'entités.
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xml"
+        mode="field"
+        items="association[both-cardinalities='ManyToOne' or both-cardinalities='OneToOne']"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:outputLabel value="#{bundle.€[../name]Label_€[name]}" for="€[ name ]" />
+    <ete:choose>
+        <ete:when test="string-length(type/package)">
+            <!-- TODO : permettre une "navigation" pour atteindre la valeur à sélectionner ? -->
+        <h:selectOneMenu id="€[name]" value="#{ cc.attrs.selected.€[name]}"
+                     converter="€[ete:initMin(type/name)]ControllerConverter"
+                     title="#{bundle.Create€[ ete:initMin(../name) ]Title_€[name]}" >
+        <f:selectItems value="#{ €[ete:initMin(type/name)]Controller.itemsAvailableSelectOne}"/>
+    </h:selectOneMenu>
+        </ete:when>
+        <ete:otherwise>
+    <h:selectOneMenu id="€[name]" value="cc.attrs.selected.€[name]}"
+                     title="#{bundle.Create€[ ete:initMin(../name) ]Title_€[name]}" >
+        <f:selectItems value="#{ €[ete:initMin(type/name)]Controller.itemsAvailableSelectOne}"/>
+    </h:selectOneMenu>
+            
+        </ete:otherwise>
+    </ete:choose>
+</root>

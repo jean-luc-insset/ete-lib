@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Construit un menun "select".
+Importée par les pages de création et d'édition d'entités.
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="xml"
+        mode="assocQual4Controller"
+        items="Entity"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<ete:apply select="//Entity[name = current()/superclass/name]" mode="assocQual4Controller"/>
+
+<ete:forEach select="association[qualifier]">    
+
+    private €[qualifier/type/package].€[qualifier/type/name]   clef€[ete:initMaj(name)];
+    private €[type/name]             valeur€[ete:initMaj(name)];
+
+    // Pour pouvoir ajouter des associations (clef,valeur), le formulaire
+    // propose un sous-formulaire permettant de choisir une clef présente
+    // et d'entrer une valeur.
+    // Ensuite, ces champs sont validés en Ajax.
+    // Ne fonctionne que pour les associations dont la clef est une entité
+    // et la valeur un scalaire.
+
+    public €[qualifier/type/package].€[qualifier/type/name] getKey€[ete:initMaj(name)]() {
+        return clef€[ete:initMaj(name)];
+    }
+
+    public void setKey€[ete:initMaj(name)](€[qualifier/type/package].€[qualifier/type/name] inClef) {
+        clef€[ete:initMaj(name)] = inClef;
+    }
+
+    public €[type/name] getValue€[ete:initMaj(name)]() {
+        return valeur€[ete:initMaj(name)];
+    }
+
+    public void setValue€[ete:initMaj(name)](€[type/name] inValeur) {
+        valeur€[ete:initMaj(name)] = inValeur;
+    }
+
+    public void doAdd€[ete:initMaj(name)]() {
+        Map&lt;€[qualifier/type/package].€[qualifier/type/name], €[type/name]&gt; map = getSelected().get€[ete:initMaj(name)]();
+        if (map == null) {
+            map = new HashMap&lt;&gt;();
+            getSelected().set€[ete:initMaj(name)](map);
+        }
+        map.put(clef€[ete:initMaj(name)], valeur€[ete:initMaj(name)]);
+    }
+</ete:forEach>
+
+</root>

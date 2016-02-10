@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Lorsqu'on a une entité a référençant d'autres entités dans des
+    relations, il peut être utile d'avoir une version sous forme d'une
+    chaîne de caractères.
+    Par exemple si on a :
+    a.b = { nom: "Lagaffe", prenom: "Gaston", id:"12", employeur: { } }
+    on voudrait avoir :
+    a.bAsString = "Lagaffe Gaston".
+    Cette feuille est appelée pour chacune des classes de a
+-->
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        mode="addAssocToString"
+        items="Entity"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ete:apply mode="addAssocToString"
+            select="//Entity[name = current()/superclass/name]"
+            /><ete:forEach select="association">            // Construction de la rep. de cette valeur
+            var assoc=valeur.€[name];
+            if (assoc) {
+                buffer="";
+                <ete:apply select="//Entity[name=current()/type/name]" mode="addPropertiesToBuffer"/>
+                valeur.€[name]AsString = buffer;
+            }</ete:forEach>
+            
+</root>
+

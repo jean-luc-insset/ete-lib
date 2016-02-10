@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Cette feuille génère une un formulaire pour créer une
+nouvelle instance du type traité.
+Elle est destinée à être appelée par une feuille générant une vue ou une
+portion de vue.
+Pour en faite une feuille générant sa propre vue (son propre fichier), il faut
+supprimer l'attribut "mode" et insérér l'attribut "href" dans l'élément
+ete:root.
+-->
+
+
+<ete:root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="html"
+        items="Entity"
+        mode="form"
+        >
+        <!--href="generated-resources/ete/webapp/vues/€[name]/form.html"-->
+
+    <ete:import href="champsForm.xml"/>
+    <ete:import href="associationNonQualifiee.xml"/>
+    <ete:import href="simpleValeurForm.xml"/>
+
+    <!-- Formulaire de création d'un nouvel élément -->
+    <form class="form-horizontal" role="form">
+        <ete:apply mode="champsForm" select="."/>
+        <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button"
+                        ng-click="create()"
+                        class="btn btn-primary">Créer</button>
+            </div>
+        </div>
+    </form>
+
+ 
+</ete:root>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<transformation-set>
+
+    <pas>
+        <!-- Services REST mais aussi entites, DAOs, unité de persistence
+             Attention, il ne faut plus modifier le fichier web.xml car ce
+             module installe et configure Jersey.
+          -->
+          <!--<if test="$essai = 'OK'">-->
+            <module   nom="templates/rest/rest-module-config.xml"/>
+          <!--</if>-->
+
+        <!-- Page principale -->
+        <template template="templates/angular/model2template.xml"/>
+        <template template="templates/angular/controller/model2controller.xml"/>
+
+        <template template="templates/angular/controller/entity2restClient.xml"/>
+
+        <!-- Contrôleurs des pages de création, listing, modification
+             Les clients des services REST sont dans les mêmes fichiers
+             que les contrôleurs.
+          -->
+        <template template="templates/angular/controller/entity2controller.xml"/>
+
+        <!-- Pages de création, listing, modification -->
+        <template template="templates/angular/list/entity2list.xml"/>
+        <!-- Le formulaire de création n'est pas une vue autonome mais est
+             dans la vue "liste". Si on souhaite en faire une vue autonome,
+             il faut "décommenter" la ligne suivante et modifier légèrement
+             les templates "entity2form" et "model2app"s
+          -->
+        <!--<template template="templates/angular/form/entity2form.xml"/>-->
+
+        <!-- Définit l'application angular et les "routes" -->
+        <template template="templates/angular/model2app.xml"/>
+    </pas>
+
+</transformation-set>

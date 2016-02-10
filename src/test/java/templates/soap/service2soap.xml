@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text" items="Entity[service]"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        href="generated-sources/ete/ete/rest/€[ name ]RESTController.java"
+>package ete.rest;
+
+import €[package].€[name];
+import €[package].jpa.€[name]DAO;
+
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
+
+    
+/**
+ *
+ * @author jldeleage
+ */
+@Stateless
+@Path("€[name]")
+public class €[name]RESTController {
+
+    @POST
+    @Consumes({"application/xml", "application/json"})
+    public void create(€[name] entity) {
+        dao.create(entity);
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes({"application/xml", "application/json"})
+    public void edit(@PathParam("id") Long id, €[name] entity) {
+        dao.edit(entity);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public void remove(@PathParam("id") Long id) {
+        dao.remove(dao.find(id));
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces({"application/xml", "application/json"})
+    public €[name] find(@PathParam("id") Long id) {
+        return dao.find(id);
+    }    
+
+    @GET
+    @Produces({"application/xml", "application/json"})
+    public List&lt;€[name]&gt; findAll() {
+        return dao.findAll();
+    }
+
+    @GET
+    @Path("{from}/{to}")
+    @Produces({"application/xml", "application/json"})
+    public List&lt;€[name]&gt; findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+        return dao.findRange(new int[]{from, to});
+    }
+
+    @GET
+    @Path("count")
+    @Produces("text/plain")
+    public String countREST() {
+        return String.valueOf(dao.count());
+    }
+
+
+
+
+    @EJB
+    private €[name]DAO  dao;
+
+
+}
+
+
+</root>

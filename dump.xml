@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!---->
+<xmi:XMI xmlns:DSL_Customization="http://www.magicdraw.com/schemas/DSL_Customization.xmi"
+         xmlns:MagicDraw_Profile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile"
+         xmlns:StandardProfile="http://www.omg.org/spec/UML/20131001/StandardProfile"
+         xmlns:Validation_Profile="http://www.magicdraw.com/schemas/Validation_Profile.xmi"
+         xmlns:ete="http://www.magicdraw.com/schemas/ete.xmi"
+         xmlns:uml="http://www.omg.org/spec/UML/20131001"
+         xmlns:xmi="http://www.omg.org/spec/XMI/20131001"><!--Copie du modèle initial désactivée-->
+   <xmi:Extension xmlns:fete="http://www.insset.u-picardie.fr/jeanluc/ete.html"
+                  xmlns:xmi="http://www.omg.org/spec/XMI/20110701"
+                  extender="ete">
+      <model xmlns:MagicDraw_Profile="http://www.omg.org/spec/UML/20110701/MagicDrawProfile"
+             xmlns:UML_Standard_Profile="http://www.omg.org/spec/UML/20110701/StandardProfileL2"
+             xmlns:stéréotypes="http://www.magicdraw.com/schemas/stéréotypes.xmi"
+             xmlns:uml="http://www.omg.org/spec/UML/20110701"
+             xmlns:uml_2_2="http://www.omg.org/spec/UML/20110701">
+         <Entity xmi-id="_18_0_1243039e_1436337362588_141692_4337">
+            <package>modele</package>
+            <name>TypeCodeBarre</name>
+            <stereotypes/>
+            <property xmi-id="_18_0_1243039e_1436992926069_390355_6032">
+               <name>nom</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+            <property xmi-id="_18_0_1243039e_1437111616832_188181_6221">
+               <name>expressionReguliere</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436275428027_564687_4075">
+            <package>modele</package>
+            <name>TypeObjet</name>
+            <abstract>true</abstract>
+            <hasSubclasses/>
+            <superclass>
+               <package>modele</package>
+               <name>TypeCaracteristique</name>
+            </superclass>
+            <stereotypes/>
+            <association xmi-id="_18_0_1243039e_1436339023252_33699_4781">
+               <name>caracteristique</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">Caracteristique</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToMany</both-cardinalities>
+               <cardinality>*</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337340384_73165_4311">
+            <package>modele</package>
+            <name>TypeItem</name>
+            <superclass>
+               <package>modele</package>
+               <name>TypeObjet</name>
+            </superclass>
+            <stereotypes/>
+            <association xmi-id="_18_0_1243039e_1436337763667_663686_4559">
+               <name>composants</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeItem</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToMany</both-cardinalities>
+               <cardinality>*</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+               <mappedBy xmi-id="_18_0_1243039e_1436337763667_766817_4560">agrégat</mappedBy>
+            </association>
+            <association xmi-id="_18_0_1243039e_1436998191324_521609_6041">
+               <name>superType</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeItem</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337430545_207021_4374">
+            <package>modele</package>
+            <name>Caracteristique</name>
+            <stereotypes>
+               <Entity>
+                  <base_Class>_18_0_1243039e_1436337430545_207021_4374</base_Class>
+                  <id>_18_0_1243039e_1436340313185_265565_5230</id>
+               </Entity>
+            </stereotypes>
+            <property xmi-id="_18_0_1243039e_1436337525836_523814_4427">
+               <name>libelle</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+            <association xmi-id="_18_0_1243039e_1436338098896_535023_4751">
+               <name>typeCaracteristique</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeCaracteristique</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337325940_672527_4285">
+            <package>modele</package>
+            <name>TypeEvenement</name>
+            <superclass>
+               <package>modele</package>
+               <name>TypeObjet</name>
+            </superclass>
+            <stereotypes/>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337679318_205449_4505">
+            <package>modele</package>
+            <name>TypeScalaire</name>
+            <superclass>
+               <package>modele</package>
+               <name>TypeCaracteristique</name>
+            </superclass>
+            <stereotypes/>
+            <association xmi-id="_18_0_1243039e_1437112768584_392570_6229">
+               <name>superType</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeScalaire</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>ManyToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337893933_732603_4653">
+            <package>modele</package>
+            <name>CodeBarre</name>
+            <stereotypes/>
+            <property xmi-id="_18_0_1243039e_1436998146905_416442_6034">
+               <name>valeur</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+            <association xmi-id="_18_0_1243039e_1436343179058_677834_5385">
+               <name>typeCodeBarre</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeCodeBarre</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337898083_144137_4679">
+            <package>modele</package>
+            <name>Item</name>
+            <superclass>
+               <package>modele</package>
+               <name>Objet</name>
+            </superclass>
+            <stereotypes/>
+            <association xmi-id="_18_0_1243039e_1436337811530_698655_4598">
+               <name>composants</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">Item</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToMany</both-cardinalities>
+               <cardinality>*</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+               <mappedBy xmi-id="_18_0_1243039e_1436337811530_525607_4599">agrégat</mappedBy>
+            </association>
+            <association xmi-id="_18_0_1243039e_1436343099022_969418_5336">
+               <name>typeItem</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeItem</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+            <association xmi-id="_18_0_1243039e_1436911717439_204172_6006">
+               <name>codeBarre</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">CodeBarre</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436337888963_2744_4627">
+            <package>modele</package>
+            <name>Evenement</name>
+            <superclass>
+               <package>modele</package>
+               <name>Objet</name>
+            </superclass>
+            <stereotypes/>
+            <association xmi-id="_18_0_1243039e_1436342534803_717693_5290">
+               <name>arguments</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">Objet</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>ManyToMany</both-cardinalities>
+               <cardinality>*</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+            <association xmi-id="_18_0_1243039e_1436343188988_176439_5406">
+               <name>typeEvenement</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">TypeEvenement</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>ManyToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+            </association>
+            <association xmi-id="_18_0_1243039e_1436998247865_55038_6074">
+               <name>composants</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">Evenement</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI">modele</package>
+               </type>
+               <kind>Class</kind>
+               <both-cardinalities>OneToMany</both-cardinalities>
+               <cardinality>*</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436275333643_918275_4049">
+            <package>modele</package>
+            <name>TypeCaracteristique</name>
+            <abstract>true</abstract>
+            <hasSubclasses/>
+            <stereotypes>
+               <Entity>
+                  <base_Class>_18_0_1243039e_1436275333643_918275_4049</base_Class>
+                  <id>_18_0_1243039e_1436340367096_661771_5232</id>
+               </Entity>
+            </stereotypes>
+            <property xmi-id="_18_0_1243039e_1436342012344_14279_5253">
+               <name>nom</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1436275311712_773345_4023">
+            <package>modele</package>
+            <name>Objet</name>
+            <abstract>true</abstract>
+            <hasSubclasses/>
+            <stereotypes>
+               <Entity>
+                  <base_Class>_18_0_1243039e_1436275311712_773345_4023</base_Class>
+                  <id>_18_0_1243039e_1436340261672_474362_5229</id>
+               </Entity>
+            </stereotypes>
+            <property xmi-id="_18_0_1243039e_1436342494734_117052_5283">
+               <name>libellé</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+               </type>
+               <cardinality>1</cardinality>
+            </property>
+            <association xmi-id="_18_0_1243039e_1436339198113_595594_5177">
+               <name>caracteristiques</name>
+               <type>
+                  <name xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                        xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                        xmlns:xmi="http://www.omg.org/XMI"
+                        xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                        xmlns:xmi-gen="http://www.omg.org/XMI">String</name>
+                  <package xmlns:uml="http://www.omg.org/spec/UML/20131001"
+                           xmlns:uml-2-3="http://www.omg.org/spec/UML/20131001"
+                           xmlns:xmi="http://www.omg.org/XMI"
+                           xmlns:xmi-2-2="http://www.omg.org/spec/XMI/20131001"
+                           xmlns:xmi-gen="http://www.omg.org/XMI"/>
+               </type>
+               <kind>DataType</kind>
+               <both-cardinalities>OneToOne</both-cardinalities>
+               <cardinality>1</cardinality>
+               <!-- *** Appel de process-mappedBy *** -->
+               <qualifier>
+                  <name>caracteristiques</name>
+                  <key>valeurs</key>
+                  <type>
+                     <param name="level" select="0" tunnel="yes"/>
+                     <name>Caracteristique</name>
+                     <package>modele</package>
+                  </type>
+               </qualifier>
+            </association>
+         </Entity>
+         <Entity xmi-id="_18_0_1243039e_1437112351832_589870_6223">
+            <package>modele</package>
+            <name>ancien</name>
+            <stereotypes/>
+         </Entity>
+         <Component xmi-id="_18_0_1243039e_1436348200320_314174_5943">
+            <package/>
+            <name>Date</name>
+            <stereotypes/>
+         </Component>
+      </model>
+   </xmi:Extension>
+</xmi:XMI>

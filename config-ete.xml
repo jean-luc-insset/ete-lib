@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<mda>
+    <!--
+        Un projet peut être construit en suivant plusieurs ensembles de
+        transformations.
+        Un ensemble de tranformations porte sur un modele et est un "pipeline"
+        constitué de "pas". Chaque "pas" transforme le modèle qu'il reçoit et
+        renvoie son résultat au "pas" suivant.
+        Certains "pas" particuliers renvoient le modèle qu'ils reçoivent car ils
+        produisent un effet de bord comme par exemple la génération de fichiers
+        (i.e. "pas" de type "template") ou l'affichage du modèle qu'elles
+        traitent ("pas" de type "dump").
+        Il y a toujours un premier "pas" implicite qui ajoute les informations
+        conformes au méta-modèle "ete".
+        La démarche est modulaire : un pas de type "module" regroupe un ensemble
+        de pas (certains pouvant être eux-mêmes de type "module"). Cela permet
+        de construire des sortes de dépendances. Ainsi, presque tous les
+        projets Java devront générer les classes annotées @Entity pour les
+        objets persistants et des classes "DAO". Il suffit de définir le module
+        construisant ces classes puis de l'insérer dans les projets selon
+        les besoins.
+        Le fichier de configuration suivant présente plusieurs versions
+        à partir d'un même modèle.
+        Pour construire une version particulière, il suffit de mettre
+        hors commentaires les instructions suivant la description de
+        la version (et de mettre en commentaire les autres).
+      -->
+
+    <transformation-set>
+        <!-- Un ensemble de transformations s'applique à un modèle (PIM).
+            On peut utiliser le plug-in pour travailler sur plusieurs modèles
+            il suffit pour cela de placer plusieurs éléments de type
+            transformation-set.
+        -->
+        <!--<modele>OrigamiAirLines.xml</modele>-->
+        <!--<modele>LeagueOfLegends.xml</modele>-->
+        <!--<modele>modeles/MMORPG.xml</modele>-->
+        <modele>src/test/resources/modeles/modele_david.xml</modele>
+        <!--<modele>modeles/banque_compagnie_aerienne_xmi_2_1.xml</modele>-->
+        <!--<modele>modele2.xml</modele>-->
+        <!--<modele>SansTitre2.xml</modele>-->
+        <!--<modele>modeles/cours_java.xml</modele>-->
+        <pas>
+            <!-- Afficher le modèle tel qu'il a été lu. Ce n'est pas le modèle
+                 tel qu'il a été exporté en XMI mais un modèle enrichi de
+                 redondances facilitant l'exploitation (format "ete")
+              -->
+            <dump fichier="dump.xml"/>
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             1                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version initiale, "à la MagicDraw"                          -->
+            <!-- Les cardinalités ne sont pas prises en compte               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            
+            <!-- Le résultat d'un pas de type "template" est le modèle reçu en
+                 entrée. Typiquement, un tel pas produit des fichiers. Le
+                 nombre de fichiers produits par un pas dépend de la nature du
+                 pas et du modèle.
+                 En effet, un template peut s'appliquer au modèle lui-même,
+                 dans ce cas il produit exactement un fichier.
+                 Le template peut s'appliquer à un certain types d'items du
+                 modèle. Dans ce cas, il produit un fichier par instance de
+                 ce type d'items présente dans le modèle.
+              -->
+            <template template="src/test/java/templates/java/entity2mauvais.xml"/>
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             2                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version un peu améliorée                                    -->
+            <!-- Les cardinalités sont prises en compte                      -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!--<template template="templates/java/entity2simplejava.xml"/>-->
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             3                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version JPA                                                 -->
+            <!-- Entités, DAO, unité de persistance                          -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!-- Ce template s'applique aux énumérations                     -->
+            <!--<template  template="templates/java/enumeration2enum.xml"/>-->
+
+            <!-- Génère les classes "Entity". Ajoute les annotations JPA     -->
+            <!--<template  template="templates/jpa/entity2java.xml"/>-->
+            <!-- Génère les "DAO" sous forme de sous-classe d'un DAO
+              - abstrait                                                     -->
+            <!--<template  template="templates/jpa/entity2jpa.xml"/>-->
+            <!-- Génère le DAO abstrait                                      -->
+            <!--<template  template="templates/jpa/AbstractFacade.xml"/>-->
+            <!-- Génère l'unité de persistence
+              - TODO : injecter un paramètre maven                           -->
+            <!--<template  template="templates/jpa/model2persistence.xml"/>-->
+
+            <!-- Autre syntaxe : un module est un ensemble de pas. Cela      -->
+            <!-- facilite la gestion des dépendances (voir l'exemple 4)      -->
+            <!--<module nom="templates/jpa/jpa-module-config.xml"/>-->
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             4                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version JSF                                                 -->
+            <!-- Page d'accueil, descripteur de déploiement, configuration   -->
+            <!-- JSF, JPA...                                                 -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!-- Ce module commence par l'invocation du module précédent     -->
+            <!--<module nom="templates/jsf/jsf-module-config.xml"/>-->
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             5                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version JSF avec template "bootstrap"                       -->
+            <!-- Même chose mais le "template" de page utilise bootstrap     -->
+            <!-- Pour cela, on invoque juste les générations du nouveau      -->
+            <!-- template après le module pour écraser ce qui a été fait par -->
+            <!-- ce dernier                                                  -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!--<module nom="templates/jsf_bootstrap/jsf-bootstrap-module-config.xml"/>-->
+
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             6                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Version PrimeFaces                                          -->
+            <!-- En fait, seules les dates sont traduites pas des            -->
+            <!-- balises <p:calendar>                                        -->
+            <!-- Le reste ne change pas                                      -->
+            <!-- TODO : améliorer les autres composants, la mise en page,    -->
+            <!-- les thèmes ?                                                -->
+            <!-- Cette version n'a jamais été développée                     -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!--<module nom="templates/prime/prime-module-config.xml"/>-->
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             7                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Vision plus à la mode : AngularJS et REST                   -->
+            <!-- Dans cette approche, les actions CRUD sont exportées sous   -->
+            <!-- forme de services REST                                      -->
+            <!-- Ce module utilise le module JPA                             -->
+            <!-- Modifications :                                             -->
+            <!--    - ajout des contrôleurs "Jersey" fournissant la          -->
+            <!--      vision REST                                            -->
+            <!--    - modification des pages pour en faire des clients REST  -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+            <!-- Uniquement les services REST.  -->
+            <!--<module nom="templates/rest/rest-module-config.xml"/>-->
+
+            <!-- web.xml déclarant à la fois JSF et Jersey -->
+            <!--<template template="templates/rest/model2web-jsf-jersey.xml"/>-->
+
+            <!-- Services REST et client Angular -->
+            <module nom="templates/angular/module-config.xml"/>
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             8                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- REST + Angular + GAE + JPA                                  -->
+            <!-- Il faut déployer Jersey et JPA sur GAE.                     -->
+            <!-- Le client ne change pas, à part l'URL                       -->
+            <!-- On n'a plus l'injection de ressources JavaEE/JNDI           -->
+            <!-- A-t-on CDI ?                                                -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             9                               -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Pages correspondant aux scénarios                           -->
+            <!-- On ne génère pas les pages CRUD comme précédemment mais     -->
+            <!-- uniquement les pages correspondant aux scénarios décrits    -->
+            <!-- dans le modèle (composants "boundary")                      -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             10                              -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- Contrôle d'accès "non GAE"                                  -->
+            <!-- Le contrôle d'accès est effectué par un filtre              -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            
+
+
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             11                              -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- OAuth2                                                      -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                             12                              -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!-- TODO                                                        -->
+            <!-- Règles métier                                               -->
+            <!-- Pour exploiter les règles métier il faut d'abord lire le    -->
+            <!-- modèle avec les contraintes puis l'enrichir avec les        -->
+            <!-- arbres abstraits correspondant à ces contraintes, enfin     -->
+            <!-- générer diverses routines à partir de ces arbres            -->
+            <!-- En particulier on génère le corps des méthodes des entités  -->
+            <!-- à partir de leurs spécification.                            -->
+            <!-- On génère aussi des méthodes de recherche dans les DAO pour -->
+            <!-- ne récupérer que les entités dont les propriétés vérifient  -->
+            <!-- les contraintes                                             -->
+            <!-- Les pages de création et d'édition tiennent compte de ces   -->
+            <!-- contraintes en Ajax. La modification d'une propriété est    -->
+            <!-- répercutée sur les autres champs du formulaire, modifiant   -->
+            <!-- éventuellement les valeurs possibles                        -->
+            <!-- Les modifications à apporter sont en plusieurs endroits :   -->
+            <!--     - les classes DAO qui doivent fournir des méthodes de   -->
+            <!--       requêtes spécifiques                                  -->
+            <!--     - les contrôleurs des pages qui doivent fournirune      -->
+            <!--       interface pour invoquer ces méthodes                  -->
+            <!--     - les pages qui passent en Ajax pour mettre à profit    -->
+            <!--       la possibilité de ne sélectionner que les objets qui  -->
+            <!--       sont conformes aux contraintes                        -->
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+        </pas>
+
+    </transformation-set>
+
+
+</mda>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text"
+        encoding="ISO-8859-1"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        href="generated-resources/ete/webapp/WEB-INF/classes/Bundle.properties"
+        >
+PersistenceErrorOccured=A persistence error occurred.
+Previous=Previous
+Next=Next
+RequiredField=Required Field
+<ete:forEach items="Entity">
+€[name]Created=€[name] Successfully Created
+€[name]Updated=€[name] Successfully Updated
+€[name]Deleted=€[name] Successfully Deleted
+Create€[name]Title=Create €[name]
+Create€[name]SaveLink=Save
+Create€[name]ShowAllLink=List All €[name]
+Create€[name]IndexLink=Index
+<!--Create€[name]Label_id=Id:-->
+<!--Create€[name]RequiredMessage_id=The Id field is required.-->
+<!--Create€[name]Title_id=Id-->
+    <ete:forEach items="property">
+Create€[../name]Label_€[ete:initMin(name)]=€[ete:initMaj(name)] :
+Create€[../name]Title_€[ete:initMin(name)]=€[ete:initMaj(name)]
+Create€[../name]RequiredMessage_€[ete:initMin(name)]=The field €[ete:initMin(name)] is required.
+    </ete:forEach>
+Edit€[name]Title=Edit €[name]
+Edit€[name]SaveLink=Save
+Edit€[name]ViewLink=Details
+Edit€[name]ShowAllLink=Display All €[name]
+Edit€[name]IndexLink=Index
+<!--Edit€[name]Label_id=Id:-->
+<!--Edit€[name]RequiredMessage_id=The Id field is required.-->
+<!--Edit€[name]Title_id=Id-->
+View€[name]Title=Details
+View€[name]DestroyLink=Delete
+View€[name]EditLink=Edit
+ViewLabel€[name]=Details
+<ete:forEach items="property | association">
+View€[../name]Label_€[name]=€[ete:initMaj(name)]
+€[../name]Label_€[name]=€[ete:decamelisation(name)]
+</ete:forEach>
+List€[name]Title=List All €[ete:initMin(name)]
+List€[name]CreateLink=Create €[name]
+List€[name]IndexLink=Index
+List€[name]ViewLink=Details
+List€[name]EditLink=Edit
+List€[name]DestroyLink=Delete
+<ete:forEach items="property | association">
+List€[../name]Title_€[name]=€[ete:initMaj(name)]
+</ete:forEach>
+</ete:forEach>
+
+</root>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<transformation-set>
+    <pas>
+        <!-- Descripteur de déploiement (déclaration de la servlet JSF) -->
+        <template  template="templates/jsf/basic/model2web.xml"/>
+        <template  template="templates/jsf/i18n/model2bundle.xml"/>
+        <template  template="templates/jsf/i18n/model2bundle_fr.xml"/>
+
+        <!-- Contrôleurs et utilitaires -->
+        <template  template="templates/jsf/basic/JsfUtil.xml"/>
+        <template  template="templates/jsf/basic/AbstractEntity2JsfController.xml"/>
+        <template  template="templates/jsf/basic/Entity2JsfController.xml"/>
+        <template  template="templates/jsf/basic/PaginationHelper.xml"/>
+    </pas>
+</transformation-set>

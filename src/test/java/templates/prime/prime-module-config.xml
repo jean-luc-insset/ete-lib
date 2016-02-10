@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<transformation-set>
+    <pas>
+        <!-- Invocation du module JSF                                        -->
+        <module nom="templates/jsf/jsf-module-config.xml"/>
+        <!-- Modification de la page d'accueil                               -->
+        <template template="templates/prime/model2index.xml"/>
+        <!-- Modification de toutes les pages de formulaire                  -->
+        <!--<template template="templates/prime/model2template.xml"/>-->
+    </pas>
+</transformation-set>

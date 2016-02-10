@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+    Document   : entity2java.xml
+    Created on : 1 octobre 2010, 18:18
+    Versions   : 1.1 - importations de java.util.Date et java.util.List
+    Author     : jldeleage
+    Description:
+        Modèle de classe à générer pour chaque entité du modèle
+-->          
+
+<root xmlns:ete="http://www.jldeleage.com/mda/ns/jld.html"
+        method="text" items="Entity"
+        xmlns="http://www.jldeleage.com/mda/ns/jld.html"
+        href="generated-sources/ete/€[ translate(package, '.', '/')]/jpa/€[ name ]DAO.java"
+        >
+<!--<ete:import href="operation.xml"/>-->
+// Code généré automatiquement par le template entity2java.xml
+package €[ package ].jpa;
+
+<for each="i in imports" >import €[ i ];
+</for>
+<!-- Importer la classe de l'entite -->
+import €[package].€[name];
+<for each="association[ type/name != 'Object' ]"><if test="type/name != 'String'">import  €[ type/package ].€[ type/name ];
+</if></for>
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.Generated;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import fr.insset.ete.dao.AbstractFacade;
+
+
+@Generated("Ete - auteur : Jean-Luc Deleage jean-luc@insset.fr")
+@Stateless
+public class €[ name ]DAO extends AbstractFacade&lt;€[ name ]&gt; {
+
+    public €[ name ]DAO() {
+        super(€[name].class);
+    }
+
+    @PersistenceContext(unitName = "PersistenceUnit")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+
+<!-- 
+    Si la classe €[name] est en association avec la classe X, il faut que
+    la classe X puisse s&eacute;lectionner les instances de €[name] conformes
+    selon un certain rôle aux contraintes d'une instance x de X.<br/>
+    Par exemple, il faut que la classe Vol puisse sélectionner les Pilotes
+    que l'on peut affectet en tant que seconds à une instance de Vol.<br/>
+    Pour cela, il faut connaître toutes les contraintes dans laquelle
+    intervient la classe Pilote.
+  -->
+<for each="roleDansClasseEtrangere">
+
+    public List&lt;€[../package].€[../name]&gt; getAll€[../name]As€[ete:initMaj(name)](€[context/package].€[context/name] inSelf) {
+        EntityManager em = getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery&lt;€[../package].€[../name]&gt; cq = cb.createQuery(€[../package].€[../name].class);<!--
+            Pour chaque invariant utilisant ce rôle, ajouter une clause "where"
+            pour ne garder que les instances de la classe €[name] qui satisfont
+            cet invarint.
+        -->
+        <for each="invariant">add€[../name]As€[ete:initMaj(name)](inSelf, cq);
+        </for>TypedQuery&lt;€[../package].€[../name]&gt; tq = em.createQuery(cq);
+        return tq.getResultList();
+    }
+
+    <for each="invariant">
+    /**
+     * Ajoute une clause "where" &amp;agrave; la requ&amp;circ;te pour que
+     * celle-ci ne fournisse que les instances de €[name] ne compromettant
+     * pas la contrainte&lt;br/&gt;
+     * &lt;code&gt;€[expression]&lt;/code&gt;&lt;br/&gt;
+     */
+    public void add€[../name]As€[ete:initMaj(name)](€[context/package].€[context/name] inSelf, CriteriaQuery inoutCq) {
+        return null;
+    }
+    </for>
+</for>
+
+}  // €[ name ]DAO
+
+</root>
